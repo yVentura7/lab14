@@ -11,5 +11,4 @@
         android:layout_height="wrap_content"
         android:text="Esta es la vista de trabajo"
         android:textSize="18sp" />
-
 </LinearLayout>
