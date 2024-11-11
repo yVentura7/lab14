@@ -39,7 +39,6 @@ class SimpleWidgetContent : GlanceAppWidget() {
             Text(text = "¿A donde quieres dirigirte?", modifier = GlanceModifier.padding(12.dp))
 
             Row(horizontalAlignment = Alignment.CenterHorizontally) {
-                // Botón para abrir la página principal
                 Button(
                     text = "Página Principal",
                     onClick = actionStartActivity<MainActivity>()
@@ -47,13 +46,13 @@ class SimpleWidgetContent : GlanceAppWidget() {
             }
 
             Row(horizontalAlignment = Alignment.CenterHorizontally) {
-                // Botón para abrir YouTube
+
                 Button(
                     text = "Ir a YouTube",
                     onClick = actionStartActivity<YouTubeRedirectActivity>()
                 )
 
-                // Botón para abrir el Calendario
+
                 Button(
                     text = "Ir al Maps",
                     onClick = actionStartActivity<GoogleMapsRedirectActivity>()
