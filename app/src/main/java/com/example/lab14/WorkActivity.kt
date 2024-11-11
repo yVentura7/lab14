@@ -12,7 +12,7 @@ class WorkActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             Surface(color = MaterialTheme.colorScheme.background) {
-                Text(text = "Bienvenido a la Página de Trabajo")
+                Text(text = "Bienvenido a la Página de Trabajo Grande")
             }
         }
     }
