@@ -21,16 +21,15 @@ import androidx.glance.text.Text
 class SimpleWidgetContent : GlanceAppWidget() {
 
     override suspend fun provideGlance(context: Context, id: GlanceId) {
-
         provideContent {
             GlanceTheme {
-                MyContent()
+                MyContent(context)
             }
         }
     }
 
     @Composable
-    private fun MyContent() {
+    private fun MyContent(context: Context) {
         Column(
             modifier = GlanceModifier.fillMaxSize()
                 .background(GlanceTheme.colors.background),
@@ -38,14 +37,26 @@ class SimpleWidgetContent : GlanceAppWidget() {
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Text(text = "¿A donde quieres dirigirte?", modifier = GlanceModifier.padding(12.dp))
+
             Row(horizontalAlignment = Alignment.CenterHorizontally) {
+                // Botón para abrir la página principal
                 Button(
-                    text = "Home",
+                    text = "Página Principal",
                     onClick = actionStartActivity<MainActivity>()
                 )
+            }
+
+            Row(horizontalAlignment = Alignment.CenterHorizontally) {
+                // Botón para abrir YouTube
                 Button(
-                    text = "Work ",
-                    onClick = actionStartActivity<WorkActivity>()
+                    text = "Ir a YouTube",
+                    onClick = actionStartActivity<YouTubeRedirectActivity>()
+                )
+
+                // Botón para abrir el Calendario
+                Button(
+                    text = "Ir al Maps",
+                    onClick = actionStartActivity<GoogleMapsRedirectActivity>()
                 )
             }
         }
