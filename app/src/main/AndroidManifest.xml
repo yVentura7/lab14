@@ -22,10 +22,6 @@
             </intent-filter>
         </activity>
 
-        <activity
-            android:name=".WorkActivity"
-            android:exported="true">
-        </activity>
 
         <receiver
             android:name=".SimpleWidget"
