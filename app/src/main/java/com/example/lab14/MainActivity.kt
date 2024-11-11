@@ -1,47 +1,32 @@
 package com.example.lab14
 
+import android.content.Intent
 import android.os.Bundle
-import androidx.activity.ComponentActivity
-import androidx.activity.compose.setContent
-import androidx.activity.enableEdgeToEdge
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
-import com.example.lab14.ui.theme.Lab14Theme
+import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
+import com.example.lab14.ui.DefaultFragment
+import com.example.lab14.ui.WorkFragment
+import com.example.lab14.ui.StudyFragment
+import com.example.lab14.ui.ProblemsFragment
 
-class MainActivity : ComponentActivity() {
+class MainActivity : AppCompatActivity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
-        setContent {
-            Lab14Theme {
-                Scaffold( modifier = Modifier.fillMaxSize() ) { innerPadding ->
-                    Greeting(
-                        name = "Android",
-                        modifier = Modifier.padding(innerPadding)
-                    )
-                }
-            }
+        setContentView(R.layout.activity_main)
+
+        // Verifica el "destination" para cargar el fragmento adecuado
+        val destination = intent.getStringExtra("destination")
+        val fragment: Fragment = when (destination) {
+            "work" -> WorkFragment()      // Fragmento con la lista de tareas
+            "study" -> StudyFragment()    // Fragmento con el texto de estudio
+            "problems" -> ProblemsFragment()  // Fragmento con el problema matemático
+            else -> DefaultFragment()     // Fragmento por defecto
         }
-    }
-}
 
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
-
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    Lab14Theme {
-        Greeting("Android")
+        // Cargar el fragmento en el contenedor
+        supportFragmentManager.beginTransaction()
+            .replace(R.id.fragment_container, fragment)
+            .commit()
     }
 }
